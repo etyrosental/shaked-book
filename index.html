@@ -75,7 +75,24 @@
             <h1>ליצירת קשר ולרכישת הספר</h1>
 
             <div style="display: inline-block;">
-                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+
+
+                <form id="buyNowDiscount" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                    <input type="hidden" name="cmd" value="_s-xclick">
+                    <input type="hidden" name="hosted_button_id" value="HWVJTHVHVR6BJ">
+                    <table>
+                        <tr><td><input type="hidden" name="on0" value="אפשרויות משלוח">אפשרויות משלוח</td></tr><tr><td><select name="os0">
+                        <option value="איסוף עצמי">איסוף עצמי ₪45.00 ILS</option>
+                        <option value="משלוח בדואר רגיל">משלוח בדואר רגיל ₪60.00 ILS</option>
+                    </select> </td></tr>
+                    </table>
+                    <input type="hidden" name="currency_code" value="ILS">
+                    <input type="image" src="https://www.paypalobjects.com/en_US/IL/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+                </form>
+
+
+                <form id="buyNowNoDiscount" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
                     <input type="hidden" name="cmd" value="_s-xclick">
                     <input type="hidden" name="hosted_button_id" value="EGAXCHBWQSBZE">
                     <table>
@@ -88,6 +105,9 @@
                     <input type="image" src="https://www.paypalobjects.com/en_US/IL/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
                     <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
                 </form>
+
+
+                <input id="discountCheckbox" type="checkbox" name="discount" onclick="showHideDiscountBuyNowButton()">הנחת גננות<br>
             </div>
 
 
@@ -137,6 +157,24 @@
     ga('create', 'UA-72168509-1', 'auto');
     ga('send', 'pageview');
 
+</script>
+
+<script>
+    function showHideDiscountBuyNowButton () {
+
+        var buyNowNoDiscount = document.getElementById("buyNowNoDiscount");
+        var buyNowDiscount = document.getElementById("buyNowDiscount");
+
+        var chbox = document.getElementById("discountCheckbox");
+        if(chbox.checked){
+            buyNowDiscount.style.display = "block";
+            buyNowNoDiscount.style.display = "none";
+        } else {
+            buyNowDiscount.style.display = "none";
+            buyNowNoDiscount.style.display = "block";
+        }
+    }
+    showHideDiscountBuyNowButton();
 </script>
 </body>
 </html>
